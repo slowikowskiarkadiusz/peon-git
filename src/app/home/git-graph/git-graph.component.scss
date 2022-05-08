@@ -1,0 +1,88 @@
+.graph-table {
+  // grid-template-columns: [graph] 100px [commit] 100%;
+  // grid-template-rows: repeat(1000000, 30px);
+  // font-family: "Inconsolata", monospace;
+  // font-family: "Roboto Mono", monospace;
+  // font-family: "Source Code Pro", monospace;
+  // font-family: "Ubuntu Mono", monospace;
+  display: grid;
+  user-select: none;
+  border-left: 1px solid #0000006b;
+  border-top: 1px solid #0000006b;
+
+  .table-header,
+  .graph-cell,
+  .commit-cell {
+    border-right: 1px solid #0000006b;
+    border-bottom: 1px solid #0000006b;
+    border-collapse: collapse;
+    padding: 0px 5px;
+    transition: background-color 0.1s;
+  }
+
+  .graph-cell {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .table-header {
+    font-weight: bold;
+    background-color: rgb(100, 100, 100);
+  }
+
+  .commit-cell {
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .cell-hovered {
+    background-color: rgb(63, 64, 68);
+  }
+
+  .cell-selected {
+    background-color: rgb(89, 92, 99) !important;
+  }
+  
+  .related-cell-selected {
+    background-color: rgb(55, 57, 61) !important;
+    // background-color: rgb(57, 64, 93) !important;
+  }
+
+  .content {
+    border: none;
+    display: inline;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .current-commit {
+    font-weight: bold;
+  }
+
+  .branch-tag {
+    display: inline-block;
+    border-radius: 0.25em;
+    margin-right: 5px;
+    padding: 0px 5px;
+    width: fit-content;
+    background-color: rgb(104, 143, 113);
+    color: white;
+  }
+
+  .remote-branch-tag {
+    background-color: rgb(139, 147, 72);
+    color: white;
+  }
+
+  .current-branch-tag {
+    background-color: rgb(193, 88, 88);
+    color: white;
+  }
+
+  .branch-tag-name {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}

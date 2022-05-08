@@ -1,0 +1,59 @@
+<app-electronable-modal-base *ngIf="data"
+    [btnsToRender]="['cancel', 'submit']"
+    (cancel)="onCancel()"
+    (submit)="onSubmit()"
+    autofocus>
+    <div class="d-flex">
+        <div class="settings-table">
+            
+            <div>
+                <label>Branch:</label>
+                <select (change)="onBranchChanged($event)"
+                    class="ms-2">
+                    <option *ngFor="let branchName of data.brancheNames"
+                        [value]="branchName"
+                        [selected]="data.predefTargetBranch == branchName">
+                        {{branchName}}
+                    </option>
+                </select>
+            </div>
+
+            <div></div>
+
+            <div>
+                <label>Remote:</label>
+                <select (change)="onRemoteChanged($event)"
+                    class="ms-2">
+                    <option *ngFor="let remoteName of remotes"
+                        [value]="remoteName"
+                        [selected]="remoteName == remote">
+                        {{remoteName}}
+                    </option>
+                </select>
+            </div>
+
+            <div></div>
+
+            <div>
+                <input type="checkbox"
+                    id="force-with-lease-checkbox"
+                    (change)="onForceWithLeaseCheckboxClicked($event)"
+                    [checked]="forceWithLease && !force">
+                <label for="force-with-lease-checkbox"
+                    class="ms-2">Force with lease</label>
+            </div>
+
+            <div>
+                <input type="checkbox"
+                    id="force-checkbox"
+                    (change)="onForceCheckboxClicked($event)"
+                    [checked]="force && !forceWithLease">
+                <label for="force-checkbox"
+                    class="ms-2">Force</label>
+            </div>
+
+            <div></div>
+
+        </div>
+    </div>
+</app-electronable-modal-base>

@@ -1,0 +1,83 @@
+<app-electronable-modal-base *ngIf="data"
+    [btnsToRender]="['cancel', 'submit']"
+    (cancel)="onCancel()"
+    (submit)="onSubmit()"
+    autofocus>
+    <div class="d-flex">
+        <div class="settings-table">
+
+            <div>Resetting '<b>{{data.currentBranch}}</b>'</div>
+
+            <div>
+                <input type="radio"
+                    id="branch-radio"
+                    name="reset-target-type"
+                    (change)="onTargetTypeChanged('branch')"
+                    [checked]="!!data.predefTargetBranch">
+                <label for="branch-radio"
+                    class="ms-2">Branch:</label>
+                <select [disabled]="targetType !== 'branch'"
+                    (change)="onTargetChanged($event)"
+                    class="ms-2">
+                    <option *ngFor="let branchName of data.brancheNames"
+                        [value]="branchName"
+                        [selected]="data.predefTargetBranch == branchName">
+                        {{branchName}}
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <input type="radio"
+                    id="commit-radio"
+                    name="reset-target-type"
+                    (change)="onTargetTypeChanged('commit')"
+                    [checked]="!!data.predefTargetCommit">
+                <label for="commit-radio"
+                    class="ms-2">Commit:</label>
+                <select [disabled]="targetType !== 'commit'"
+                    (change)="onTargetChanged($event)"
+                    class="ms-2">
+                    <option *ngFor="let commit of data.commits"
+                        [value]="commit.hash"
+                        [selected]="data.predefTargetCommit == commit.hash">
+                        {{commit.hash.substring(0, 7) + ' ' + commit.message}}
+                    </option>
+                </select>
+            </div>
+
+            <div></div>
+
+            <div>Reset type:</div>
+
+            <div>
+                <input type="radio"
+                    id="soft-radio"
+                    name="reset-type"
+                    (change)="onResetypeChanged('soft')">
+                <label for="soft-radio"
+                    class="ms-2">Soft</label>
+            </div>
+
+            <div>
+                <input type="radio"
+                    id="mixed-radio"
+                    name="reset-type"
+                    (change)="onResetypeChanged('mixed')"
+                    checked>
+                <label for="mixed-radio"
+                    class="ms-2">Mixed</label>
+            </div>
+
+            <div>
+                <input type="radio"
+                    id="hard-radio"
+                    name="reset-type"
+                    (change)="onResetypeChanged('hard')">
+                <label for="hard-radio"
+                    class="ms-2">Hard</label>
+            </div>
+
+        </div>
+    </div>
+</app-electronable-modal-base>

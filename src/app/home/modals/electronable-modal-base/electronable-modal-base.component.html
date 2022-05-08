@@ -1,0 +1,32 @@
+<div style="height:100%; display: flex; flex-flow: column;">
+
+    <div style="padding: 1em; flex-grow:  1; overflow-y: auto;">
+        <ng-content></ng-content>
+    </div>
+
+    <div style="padding: 1em; flex-shrink: 0; display: flex;">
+        <!-- <button *ngIf="doRenderHelp" style="margin: auto;" (click)="help.emit()">🦮 Help</button> -->
+
+        <app-btn *ngIf="doRenderCancel"
+            id="cancelBtn"
+            bstyle="color: white;"
+            backgroundType="orange"
+            style="margin: auto;"
+            [disabled]="cancelDisabled"
+            (keyup.escape)="cancelDisabled ? nothing() : _onCancel()"
+            (keyup.enter)="cancelDisabled ? nothing() : _onCancel()"
+            (keyup.space)="cancelDisabled ? nothing() : _onCancel()"
+            (click)="cancelDisabled ? nothing() : _onCancel()">❌ Cancel</app-btn>
+        <app-btn *ngIf="doRenderSubmit"
+            id="submitBtn"
+            bstyle="color: white;"
+            backgroundType="green"
+            style="margin: auto;"
+            [disabled]="submitDisabled"
+            (keyup.escape)="submitDisabled ? nothing() : _onCancel()"
+            (keyup.enter)="submitDisabled ? nothing() : _onSubmit()"
+            (keyup.space)="submitDisabled ? nothing() : _onSubmit()"
+            (click)="submitDisabled ? nothing() : _onSubmit()">🙆‍♂️ Okay</app-btn>
+    </div>
+
+</div>

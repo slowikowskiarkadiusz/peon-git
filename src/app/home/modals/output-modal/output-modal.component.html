@@ -1,0 +1,17 @@
+<app-electronable-modal-base [btnsToRender]="['submit']"
+    (help)="onHelp()"
+    (cancel)="onCancel()"
+    (submit)="onSubmit()"
+    [autoCloseOnCancel]="false"
+    [autoCloseOnSubmit]="false"
+    autofocus>
+    <div class="output">
+        <ng-container *ngIf="data; else elseBlock">
+            <span [style]="'color: ' + stderrColor">{{data.stderr}}</span>
+            <span [style]="'color: ' + stdoutColor">{{data.stdout}}</span>
+        </ng-container>
+        <ng-template #elseBlock>
+            <span [style]="'color: ' + stdoutColor">...hmmm...</span>
+        </ng-template>
+    </div>
+</app-electronable-modal-base>

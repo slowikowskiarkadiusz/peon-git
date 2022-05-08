@@ -1,0 +1,95 @@
+<div class="graph-table"
+    [style]="tableStyle">
+    <div class="table-header">
+        LP
+    </div>
+    <div class="table-header">
+        BRANCH
+    </div>
+    <div class="table-header">
+        AUTHOR
+    </div>
+    <div class="table-header">
+        DATE
+    </div>
+    <div class="table-header">
+        SHA
+    </div>
+
+    <ng-container *ngFor="let row of tableRows; let rowI = index">
+        <!-- Delete me -->
+        <div class="commit-cell"
+            [class.cell-hovered]="goodHighlightedRow !== rowI && hoveredRow === rowI"
+            [class.cell-selected]="goodHighlightedRow !== rowI && selectedRows.includes(rowI)"
+            [class.cell-good-highlighted]="badHighlightedRow !== rowI && goodHighlightedRow === rowI"
+            [class.cell-bad-highlighted]="badHighlightedRow === rowI"
+            (contextmenu)="onContextMenuClicked($event, rowI)"
+            (mouseenter)="onRowHoverEnter(rowI)"
+            (mouseleave)="onRowHoverExit(rowI)"
+            (mouseup)="onRowSelectedEnter(rowI, $event)">
+            {{row.lp}}
+        </div>
+
+        <!-- Message cell -->
+        <div class="commit-cell"
+            [class.cell-hovered]="goodHighlightedRow !== rowI && hoveredRow === rowI"
+            [class.cell-selected]="goodHighlightedRow !== rowI && selectedRows.includes(rowI)"
+            [class.cell-good-highlighted]="badHighlightedRow !== rowI && goodHighlightedRow === rowI"
+            [class.cell-bad-highlighted]="badHighlightedRow === rowI"
+            (contextmenu)="onContextMenuClicked($event, rowI)"
+            (mouseenter)="onRowHoverEnter(rowI)"
+            (mouseleave)="onRowHoverExit(rowI)"
+            (mouseup)="onRowSelectedEnter(rowI, $event)"
+            [title]="row.message">
+
+            <div class="content">{{row.message}}</div>
+        </div>
+
+        <!-- Author cell -->
+        <div class="commit-cell"
+            [class.cell-hovered]="goodHighlightedRow !== rowI && hoveredRow === rowI"
+            [class.cell-selected]="goodHighlightedRow !== rowI && selectedRows.includes(rowI)"
+            [class.cell-good-highlighted]="badHighlightedRow !== rowI && goodHighlightedRow === rowI"
+            [class.cell-bad-highlighted]="badHighlightedRow === rowI"
+            (contextmenu)="onContextMenuClicked($event, rowI)"
+            (mouseenter)="onRowHoverEnter(rowI)"
+            (mouseleave)="onRowHoverExit(rowI)"
+            (mouseup)="onRowSelectedEnter(rowI, $event)"
+            [title]="row.author">
+            <div class="content">{{row.author}}</div>
+        </div>
+
+        <!-- Date cell -->
+        <div class="commit-cell"
+            [class.cell-hovered]="goodHighlightedRow !== rowI && hoveredRow === rowI"
+            [class.cell-selected]="goodHighlightedRow !== rowI && selectedRows.includes(rowI)"
+            [class.cell-good-highlighted]="badHighlightedRow !== rowI && goodHighlightedRow === rowI"
+            [class.cell-bad-highlighted]="badHighlightedRow === rowI"
+            (contextmenu)="onContextMenuClicked($event, rowI)"
+            (mouseenter)="onRowHoverEnter(rowI)"
+            (mouseleave)="onRowHoverExit(rowI)"
+            (mouseup)="onRowSelectedEnter(rowI, $event)"
+            [title]="date(row)">
+            <div class="content">{{date(row)}}</div>
+        </div>
+
+        <!-- SHA cell -->
+        <div class="commit-cell"
+            [class.cell-hovered]="goodHighlightedRow !== rowI && hoveredRow === rowI"
+            [class.cell-selected]="goodHighlightedRow !== rowI && selectedRows.includes(rowI)"
+            [class.cell-good-highlighted]="badHighlightedRow !== rowI && goodHighlightedRow === rowI"
+            [class.cell-bad-highlighted]="badHighlightedRow === rowI"
+            (contextmenu)="onContextMenuClicked($event, rowI)"
+            (mouseenter)="onRowHoverEnter(rowI)"
+            (mouseleave)="onRowHoverExit(rowI)"
+            (mouseup)="onRowSelectedEnter(rowI, $event)"
+            [title]="row.hash">
+            <div class="content">{{row.hash.substring(0,7)}}</div>
+        </div>
+    </ng-container>
+
+</div>
+
+<ng-template #doNotRender>
+    Loading...
+</ng-template>

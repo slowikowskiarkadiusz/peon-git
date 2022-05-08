@@ -1,0 +1,117 @@
+@import "../../shared/jiggle.animation.scss";
+$border-width: 5px;
+
+.btn {
+  display: inline-block;
+  // margin-right: 1em;
+  // margin-bottom: 1em;
+  border-radius: 1em;
+}
+
+.dflt-border-btn {
+  border: $border-width wheat solid;
+}
+
+.dflt-background-btn {
+  color: black;
+  background-color: wheat;
+}
+
+.none-border-btn {
+  border: none;
+}
+
+.none-background-btn {
+  color: white;
+  background-color: none;
+}
+
+.gray-border-btn {
+  border: $border-width gray solid;
+}
+
+.gray-background-btn {
+  color: white;
+  background-color: gray;
+}
+
+.beige-border-btn {
+  border: $border-width beige solid;
+}
+
+.beige-background-btn {
+  color: black;
+  background-color: beige;
+}
+
+.blue-border-btn {
+  border: $border-width rgb(0, 110, 255) solid;
+}
+
+.blue-background-btn {
+  color: white;
+  background-color: rgb(0, 110, 255);
+}
+
+.orange-border-btn {
+  border: $border-width rgb(255, 94, 0) solid;
+}
+
+.orange-background-btn {
+  color: white;
+  background-color: rgb(255, 94, 0);
+}
+
+.red-border-btn {
+  border: $border-width rgb(255, 0, 0) solid;
+}
+
+.red-background-btn {
+  color: white;
+  background-color: rgb(255, 0, 0);
+}
+
+.green-border-btn {
+  border: $border-width rgb(0, 211, 123) solid;
+}
+
+.green-background-btn {
+  color: black;
+  background-color: rgb(0, 211, 123);
+}
+
+.jiggle2:hover {
+  animation: jiggle2 0.15s;
+}
+
+.jiggle3:hover {
+  animation: jiggle3 0.15s;
+}
+
+.jiggle4:hover {
+  animation: jiggle4 0.15s;
+}
+
+.jiggle5:hover {
+  animation: jiggle5 0.15s;
+}
+
+.jiggle6:hover {
+  animation: jiggle6 0.15s;
+}
+
+.jiggle7:hover {
+  animation: jiggle7 0.15s;
+}
+
+.jiggle8:hover {
+  animation: jiggle8 0.15s;
+}
+
+.jiggle9:hover {
+  animation: jiggle9 0.15s;
+}
+
+.jiggle10:hover {
+  animation: jiggle10 0.15s;
+}

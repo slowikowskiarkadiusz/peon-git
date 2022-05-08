@@ -1,0 +1,42 @@
+<app-electronable-modal-base *ngIf="data"
+    [btnsToRender]="['cancel', 'submit']"
+    (help)="onHelp()"
+    (cancel)="onCancel()"
+    (submit)="onSubmit()"
+    autofocus>
+    <div class="d-flex">
+        <div class="settings-table">
+
+            <div>Fetch</div>
+
+            <div>
+                <input type="radio"
+                    id="all-radio"
+                    name="checkout-target"
+                    (change)="onTargetTypeChanged('--all')"
+                    checked>
+                <label for="all-radio"
+                    class="ms-2">All</label>
+            </div>
+
+            <div>
+                <input type="radio"
+                    id="remote-radio"
+                    name="checkout-target"
+                    (change)="onTargetTypeChanged('remote')">
+                <label for="remote-radio"
+                    class="ms-2">Remote:</label>
+                <select [disabled]="targetType !== 'remote'"
+                    (change)="onRemoteChanged($event)"
+                    class="ms-2">
+                    <option *ngFor="let remoteName of remotes"
+                        [value]="remoteName"
+                        [selected]="remoteName == remote">
+                        {{remoteName}}
+                    </option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+</app-electronable-modal-base>

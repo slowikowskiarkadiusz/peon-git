@@ -1,0 +1,113 @@
+<div class="parent"
+    [style]="tableStyle"
+    *ngIf="fileInfos?.length > 0">
+    <div *ngIf="checkboxes"
+        class="table-header"
+        title="Staged">
+        <input type="checkbox"
+            [checked]="allChecked"
+            (change)="onFileCheckboxClicked($event)" />
+    </div>
+    <div class="table-header"
+        title="Relative file path">
+        PATH
+    </div>
+    <div class="table-header"
+        title="Name status">
+        Status
+    </div>
+    <div class="table-header"
+        title="Lines added">
+        +
+    </div>
+    <div class="table-header"
+        title="Lines deleted">
+        -
+    </div>
+
+    <ng-container *ngFor="let fileInfo of fileInfos; let rowI = index">
+
+        <!-- Staged cell -->
+        <div *ngIf="checkboxes"
+            class="file-cell"
+            [class.cell-untracked]="!fileInfo.isTracked"
+            [class.cell-hovered]="hoveredRow === rowI"
+            [class.cell-selected]="selectedRows.includes(rowI)"
+            (mouseenter)="onRowHoverEnter(rowI)"
+            (mouseleave)="onRowHoverExit(rowI)"
+            (mouseup)="onRowSelectedEnter(rowI, $event)"
+            [title]="fileInfo.filePath"
+            (contextmenu)="onContextMenuClicked(rowI, $event)">
+
+            <input type="checkbox"
+                [checked]="checked[rowI]"
+                [disabled]="fileInfo.commitHash?.length > 0 ? true : undefined"
+                (change)="onFileCheckboxClicked($event, rowI)" />
+        </div>
+
+        <!-- Path cell -->
+        <div class="file-cell"
+            [class]="fullNameStatus(fileInfo)?.toLowerCase()"
+            [class.cell-untracked]="!fileInfo.isTracked"
+            [class.cell-hovered]="hoveredRow === rowI"
+            [class.cell-selected]="selectedRows.includes(rowI)"
+            (mouseenter)="onRowHoverEnter(rowI)"
+            (mouseleave)="onRowHoverExit(rowI)"
+            (mouseup)="onRowSelectedEnter(rowI, $event)"
+            [title]="fileInfo.filePath"
+            (contextmenu)="onContextMenuClicked(rowI, $event)">
+
+            <div class="content">
+                <span class="file-path-name">{{getFolder(fileInfo.filePath)}}</span>
+                <span class="file-name">{{getName(fileInfo.filePath)}}</span>
+            </div>
+        </div>
+
+        <!-- Name status cell -->
+        <div class="file-cell"
+            [class]="fullNameStatus(fileInfo)?.toLowerCase()"
+            [class.cell-hovered]="hoveredRow === rowI"
+            [class.cell-unmerged]="fileInfo.nameStatus === 'U'"
+            [class.cell-untracked]="!fileInfo.isTracked"
+            [class.cell-selected]="selectedRows.includes(rowI)"
+            (mouseenter)="onRowHoverEnter(rowI)"
+            (mouseleave)="onRowHoverExit(rowI)"
+            (mouseup)="onRowSelectedEnter(rowI, $event)"
+            [title]="fileInfo.linesAdded"
+            (contextmenu)="onContextMenuClicked(rowI, $event)">
+
+            <div class="file-path-name">{{fullNameStatus(fileInfo)}}</div>
+        </div>
+
+        <!-- Added cell -->
+        <div class="file-cell lines-added-cell"
+            [class.cell-hovered]="hoveredRow === rowI"
+            [class.cell-unmerged]="fileInfo.nameStatus === 'U'"
+            [class.cell-untracked]="!fileInfo.isTracked"
+            [class.cell-selected]="selectedRows.includes(rowI)"
+            (mouseenter)="onRowHoverEnter(rowI)"
+            (mouseleave)="onRowHoverExit(rowI)"
+            (mouseup)="onRowSelectedEnter(rowI, $event)"
+            [title]="fileInfo.linesAdded"
+            (contextmenu)="onContextMenuClicked(rowI, $event)">
+
+            <div class="content">{{fileInfo.linesAdded}}</div>
+        </div>
+
+        <!-- Removed cell -->
+        <div class="file-cell lines-removed-cell"
+            [class.cell-hovered]="hoveredRow === rowI"
+            [class.cell-unmerged]="fileInfo.nameStatus === 'U'"
+            [class.cell-untracked]="!fileInfo.isTracked"
+            [class.cell-selected]="selectedRows.includes(rowI)"
+            (mouseenter)="onRowHoverEnter(rowI)"
+            (mouseleave)="onRowHoverExit(rowI)"
+            (mouseup)="onRowSelectedEnter(rowI, $event)"
+            [title]="fileInfo.linesRemoved"
+            (contextmenu)="onContextMenuClicked(rowI, $event)">
+
+            <div class="content">{{fileInfo.linesRemoved }}</div>
+        </div>
+    </ng-container>
+
+</div>

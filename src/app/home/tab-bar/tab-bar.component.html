@@ -1,0 +1,22 @@
+<div class="tab-bar">
+    <ng-container *ngFor="let tab of allTabs; let index = index">
+        <app-btn bclass="m-1"
+            bstyle="font-size: 12px;"
+            [backgroundType]="index == currentTabIndex ? 'dflt' : 'gray'"
+            jiggle="3"
+            (click)="onSwitchedToTab(index)">
+            <div class="me-2"
+                style="float:left;">{{getTabName(tab) ?? '[[newtab]]'}}</div>
+            <div style="float: right;"
+                (click)="onCloseTab(index)">❌</div>
+        </app-btn>
+    </ng-container>
+
+    <app-btn bclass="mx-3"
+        bstyle="font-size: 12px;"
+        backgroundType="beige"
+        jiggle="7"
+        (click)="onAddNewTab()">
+        ➕📢
+    </app-btn>
+</div>

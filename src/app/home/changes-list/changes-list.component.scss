@@ -1,0 +1,103 @@
+.parent {
+  height: 100%;
+  display: grid;
+  user-select: none;
+  border-left: 1px solid #0000006b;
+  border-top: 1px solid #0000006b;
+  width: 100%;
+
+  .table-header {
+    font-weight: bold;
+    background-color: rgb(100, 100, 100);
+  }
+
+  .table-header,
+  .file-cell {
+    border-right: 1px solid #0000006b;
+    border-bottom: 1px solid #0000006b;
+    border-collapse: collapse;
+    padding: 0px 5px;
+    overflow: hidden;
+    transition: background-color 0.1s;
+  }
+
+  .lines-added-cell {
+    background-color: rgb(104, 120, 72);
+  }
+
+  .lines-removed-cell {
+    background-color: rgb(111, 71, 71);
+  }
+
+  .cell-hovered {
+    background-color: rgba(63, 64, 68, 0.328);
+  }
+
+  .cell-selected {
+    background-color: rgba(89, 92, 99, 0.442) !important;
+  }
+
+  .cell-unmerged {
+    background-color: rgb(71, 44, 44) !important;
+  }
+
+  .added {
+    .file-path-name {
+      color: rgb(123, 167, 140);
+    }
+  }
+
+  .copied {
+    .file-path-name {
+      color: rgb(160, 167, 123);
+    }
+  }
+
+  .deleted {
+    .file-path-name {
+      color: rgb(167, 123, 123);
+    }
+  }
+
+  .modified {
+    .file-path-name {
+      color: rgb(163, 163, 163);
+    }
+  }
+
+  .renamed {
+    .file-path-name {
+      color: rgb(123, 141, 167);
+    }
+  }
+
+  .type-changed {
+    .file-path-name {
+      color: rgb(123, 141, 167);
+    }
+  }
+
+  .unmerged {
+    .file-path-name {
+      color: rgb(167, 123, 123);
+    }
+  }
+
+  .unknown {
+    background-color: rgb(30, 31, 33);
+
+    .file-path-name {
+      color: rgb(102, 102, 102);
+    }
+
+    .file-name {
+      color: rgb(131, 131, 131);
+    }
+  }
+
+  .broken {
+    .file-path-name {
+      color: rgb(167, 123, 123);
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "peon-git",
+  "version": "0.0.1",
+  "main": "main.js",
+  "productName": "peon-git",
+  "private": true,
+  "dependencies": {},
+  "fileAssociations": {
+    "icon": "icon.icns"
+  }
+}

@@ -1,0 +1,23 @@
+<div [style]="'height: ' + windowHeight + 'px'"
+    style="display: flex; flex-flow: column;">
+
+    <div style="flex-shrink: 0;">
+        <app-tab-bar [allTabs]="allTabs"
+            [currentTabIndex]="currentTabIndex"
+            (allTabsChanged)="onAllTabsChanged($event)"
+            (tabSwitched)="onTabSwitched($event)">
+        </app-tab-bar>
+    </div>
+
+    <div style="flex-shrink: 1; overflow-x: hidden;">
+        <ng-container *ngIf="currentTab; else noTabSelected">
+            <app-tab-content [tabData]="currentTab"
+                (tabDataChanged)="onTabDataChanged($event)"></app-tab-content>
+        </ng-container>
+
+        <ng-template #noTabSelected>
+            You havent selected any tab
+        </ng-template>
+    </div>
+
+</div>

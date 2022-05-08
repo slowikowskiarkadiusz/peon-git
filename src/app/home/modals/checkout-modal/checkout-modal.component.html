@@ -1,0 +1,68 @@
+<app-electronable-modal-base *ngIf="data"
+    [btnsToRender]="['cancel', 'submit']"
+    (help)="onHelp()"
+    (cancel)="onCancel()"
+    (submit)="onSubmit()"
+    autofocus>
+    <div class="d-flex">
+        <div class="settings-table">
+            <div>
+                <input type="radio"
+                    id="branch-radio"
+                    name="checkout-target"
+                    (change)="onTargetTypeChanged('branch')"
+                    [checked]="!!data.predefTargetBranch">
+                <label for="branch-radio"
+                    class="ms-2">To branch:</label>
+                <select [disabled]="targetType !== 'branch'"
+                    (change)="onTargetChanged($event)"
+                    class="ms-2">
+                    <option *ngFor="let branchName of data.brancheNames"
+                        [value]="branchName"
+                        [selected]="data.predefTargetBranch == branchName">
+                        {{branchName}}
+                    </option>
+                </select>
+            </div>
+            <div>
+                <input type="radio"
+                    id="commit-radio"
+                    name="checkout-target"
+                    (change)="onTargetTypeChanged('commit')"
+                    [checked]="!!data.predefTargetCommit">
+                <label for="commit-radio"
+                    class="ms-2">To commit:</label>
+                <select [disabled]="targetType !== 'commit'"
+                    (change)="onTargetChanged($event)"
+                    class="ms-2">
+                    <option *ngFor="let commit of data.commits"
+                        [value]="commit.hash"
+                        [selected]="data.predefTargetCommit == commit.hash">
+                        {{commit.hash.substring(0, 7) + ' ' + commit.message}}
+                    </option>
+                </select>
+            </div>
+            <div>
+                <input type="checkbox"
+                    id="new-branch-checkbox"
+                    (change)="onNewBranchCheckboxClicked($event)"
+                    [checked]="newBranch">
+                <label for="new-branch-checkbox"
+                    class="ms-2">Checkout on a new branch</label>
+                <input type="text"
+                    id="new-branch-checkbox"
+                    (change)="onNewBranchValueChanged($event)"
+                    [disabled]="!newBranch"
+                    class="ms-2">
+            </div>
+            <div>
+                <input type="checkbox"
+                    id="force-checkbox"
+                    (change)="onForceCheckboxClicked($event)"
+                    [checked]="force">
+                <label for="force-checkbox"
+                    class="ms-2">Force (remove working tree changes)</label>
+            </div>
+        </div>
+    </div>
+</app-electronable-modal-base>

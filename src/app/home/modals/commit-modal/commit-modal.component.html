@@ -1,0 +1,39 @@
+<app-electronable-modal-base *ngIf="data"
+    [btnsToRender]="['cancel', 'submit']"
+    (cancel)="onCancel()"
+    (submit)="onSubmit()"
+    autofocus>
+    <div class="d-flex">
+        <div class="settings-table">
+
+            <div>Commiting to '<b>{{data.targetBranch}}</b>'</div>
+
+            <div>
+                <div>
+                    <label for="commit-message">Commit message</label>
+                    <textarea type="text"
+                        id="commit-message"
+                        (keyup)="onCommitMessageValueChanged($event)"
+                        class="w-100">{{commitMessage}}</textarea>
+                </div>
+            </div>
+
+            <div>
+                <input type="checkbox"
+                    id="amend-last-commit"
+                    name="checkout-target"
+                    (change)="onAmendLastCommitCheckboxClicked('commit')">
+                <label for="amend-last-commit"
+                    class="ms-2">Amend last commit</label>
+            </div>
+
+            <div>
+                <app-changes-list [fileInfos]="fileInfos"
+                    [checkboxes]="true"
+                    (checkedChange)="onCheckedChange($event)">
+                </app-changes-list>
+            </div>
+
+        </div>
+    </div>
+</app-electronable-modal-base>

@@ -1,0 +1,75 @@
+<app-electronable-modal-base *ngIf="data"
+    [btnsToRender]="['cancel', 'submit']"
+    (cancel)="onCancel()"
+    (submit)="onSubmit()"
+    autofocus>
+    <div class="d-flex">
+        <div class="settings-table">
+
+            <div>
+                <label for="new--checkbox">Name: </label>
+                <input type="text"
+                    id="new-checkbox"
+                    (keyup)="onNameValueChanged($event)"
+                    class="ms-2">
+            </div>
+
+            <div>
+                <input type="radio"
+                    id="branch-radio"
+                    name="checkout-target"
+                    (change)="onTargetTypeChanged('branch')"
+                    [checked]="!!data.predefTargetBranch">
+                <label for="branch-radio"
+                    class="ms-2">On a branch:</label>
+                <select [disabled]="targetType !== 'branch'"
+                    (change)="onTargetChanged($event)"
+                    class="ms-2">
+                    <option *ngFor="let branchName of data.brancheNames"
+                        [value]="branchName"
+                        [selected]="data.predefTargetBranch == branchName">
+                        {{branchName}}
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <input type="radio"
+                    id="commit-radio"
+                    name="checkout-target"
+                    (change)="onTargetTypeChanged('commit')"
+                    [checked]="!!data.predefTargetCommit">
+                <label for="commit-radio"
+                    class="ms-2">On a commit:</label>
+                <select [disabled]="targetType !== 'commit'"
+                    (change)="onTargetChanged($event)"
+                    class="ms-2">
+                    <option *ngFor="let commit of data.commits"
+                        [value]="commit.hash"
+                        [selected]="data.predefTargetCommit == commit.hash">
+                        {{commit.hash.substring(0, 7) + ' ' + commit.message}}
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <input type="checkbox"
+                    id="force-checkbox"
+                    (change)="onForceCheckboxClicked($event)"
+                    [checked]="force">
+                <label for="force-checkbox"
+                    class="ms-2">Force (override an existing branch if there's any)</label>
+            </div>
+
+            <div>
+                <input type="checkbox"
+                    id="checkout-checkbox"
+                    (change)="onCheckoutCheckboxClicked($event)"
+                    [checked]="checkout">
+                <label for="checkout-checkbox"
+                    class="ms-2">Checkout on the new branch</label>
+            </div>
+
+        </div>
+    </div>
+</app-electronable-modal-base>

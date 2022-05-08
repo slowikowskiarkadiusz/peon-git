@@ -1,0 +1,6 @@
+<ng-container *ngIf="tabData && isTabValid(tabData); else noTabData">
+    <app-repo-tab [tabData]="tabData"></app-repo-tab>
+</ng-container>
+<ng-template #noTabData>
+    <app-new-tab (newTabData)="newTabDataEmitted($event)"></app-new-tab>
+</ng-template>

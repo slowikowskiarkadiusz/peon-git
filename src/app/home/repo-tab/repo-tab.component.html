@@ -1,0 +1,24 @@
+<div [style]="tableStyle"
+    style="max-height: 100%;"
+    class="parent">
+
+    <div style="overflow-y: scroll;">
+        <ng-container *ngIf="currentCommit">
+            <app-git-graph [currentCommit]="currentCommit"
+                [currentBranch]="currentBranch"
+                [branches]="branches"
+                [isWorkingTree]="isWorkingTree"
+                (onCommitFocusChange)="onCommitFocusChange($event)"
+                (onContextMenu)="onGraphContextMenu($event)">
+            </app-git-graph>
+        </ng-container>
+    </div>
+
+    <div style="overflow-y: scroll; border-top: 3px black solid;">
+        <app-changes-list [fileInfos]="fileInfos"
+            [checkboxes]="false"
+            (contextMenu)="onChangesListContextMenu($event)">
+        </app-changes-list>
+    </div>
+
+</div>

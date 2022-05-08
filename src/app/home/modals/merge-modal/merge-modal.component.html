@@ -1,0 +1,94 @@
+<app-electronable-modal-base *ngIf="data"
+    [btnsToRender]="['cancel', 'submit']"
+    (cancel)="onCancel()"
+    (submit)="onSubmit()"
+    autofocus>
+    <div class="d-flex">
+        <div class="settings-table">
+
+            <div>
+                <input type="radio"
+                    id="branch-radio"
+                    name="checkout-target"
+                    (change)="onTargetTypeChanged('branch')"
+                    [checked]="!!data.predefTargetBranch">
+                <label for="branch-radio"
+                    class="ms-2">Branch:</label>
+                <select [disabled]="targetType !== 'branch'"
+                    (change)="onTargetChanged($event)"
+                    class="ms-2">
+                    <option *ngFor="let branchName of data.brancheNames"
+                        [value]="branchName"
+                        [selected]="data.predefTargetBranch == branchName">
+                        {{branchName}}
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <input type="radio"
+                    id="commit-radio"
+                    name="checkout-target"
+                    (change)="onTargetTypeChanged('commit')"
+                    [checked]="!!data.predefTargetCommit">
+                <label for="commit-radio"
+                    class="ms-2">Commit:</label>
+                <select [disabled]="targetType !== 'commit'"
+                    (change)="onTargetChanged($event)"
+                    class="ms-2">
+                    <option *ngFor="let commit of data.commits"
+                        [value]="commit.hash"
+                        [selected]="data.predefTargetCommit == commit.hash">
+                        {{commit.hash.substring(0, 7) + ' ' + commit.message}}
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <input type="checkbox"
+                    id="no-fast-forward-checkbox"
+                    (change)="onNoFastForwardCheckboxClicked($event)"
+                    [checked]="noFastForward && !fastForwardOnly">
+                <label for="no-fast-forward-checkbox"
+                    class="ms-2">No fast-forward</label>
+            </div>
+
+            <div>
+                <input type="checkbox"
+                    id="fast-forward-only-checkbox"
+                    (change)="onFastForwardOnlyCheckboxClicked($event)"
+                    [checked]="fastForwardOnly && !noFastForward">
+                <label for="fast-forward-only-checkbox"
+                    class="ms-2">Fast-forward only</label>
+            </div>
+
+            <div>
+                <input type="checkbox"
+                    id="no-commit-checkbox"
+                    (change)="onNoCommitCheckboxClicked($event)"
+                    [checked]="noCommit && !commit">
+                <label for="no-commit-checkbox"
+                    class="ms-2">No commit</label>
+            </div>
+
+            <div>
+                <input type="checkbox"
+                    id="commit-checkbox"
+                    (change)="onCommitCheckboxClicked($event)"
+                    [checked]="commit && !noCommit">
+                <label for="commit-checkbox"
+                    class="ms-2">Commit</label>
+            </div>
+
+            <div>
+                <label for="commit-message">Commit message</label>
+                <textarea type="text"
+                    id="commit-message"
+                    (keyup)="onCommitMessageValueChanged($event)"
+                    [disabled]="!commit || noCommit"
+                    class="w-100">{{commitMessage}}</textarea>
+            </div>
+
+        </div>
+    </div>
+</app-electronable-modal-base>

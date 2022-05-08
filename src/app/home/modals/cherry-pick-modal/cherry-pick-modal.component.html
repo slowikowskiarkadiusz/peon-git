@@ -1,0 +1,55 @@
+<app-electronable-modal-base *ngIf="data"
+    [btnsToRender]="['cancel', 'submit']"
+    (cancel)="onCancel()"
+    (submit)="onSubmit()"
+    [submitDisabled]="isCherryPickingInProgress"
+    autofocus>
+    <div style="display: flex; flex-flow: column; height: 100%;">
+
+        <div>
+            <ng-container *ngIf="currentCommitTarget < data.commits.length; else finished">
+                <h5 [class.text-danger]="mergeFixingMode">
+                    Cherry-picking commit {{currentCommitTarget + 1}} out of
+                    total {{data.commits.length}}
+                </h5>
+            </ng-container>
+            <ng-template #finished>
+                <h5 class="text-success">Cherry-picking finished</h5>
+            </ng-template>
+        </div>
+        <div *ngIf="mergeFixingMode"
+            class="text-danger">
+            Can't proceed with cherry-picking. Fix merge conflicts and try again.
+        </div>
+
+        <div class="settings-table"
+            style="flex-grow: 1; overflow-y: auto; display: grid; grid-template-rows: min(50%, fill) min(50%, fill);">
+            <div style="overflow-y: auto;">
+                <app-commit-list [commits]="data.commits"
+                    (contextMenu)="onGraphContextMenu($event)"
+                    (commitFocusChange)="onCommitFocusChange($event)"
+                    [goodHighlightedRow]="!mergeFixingMode && currentCommitTarget"
+                    [badHighlightedRow]="mergeFixingMode && currentCommitTarget">
+                </app-commit-list>
+            </div>
+            <div style="overflow-y: auto;">
+                <app-changes-list [fileInfos]="fileInfos"
+                (contextMenu)="onChangesListContextMenu($event)">
+                </app-changes-list>
+            </div>
+        </div>
+
+        <div style="padding-top: 1em; flex-shrink: 0; display: flex;">
+            <app-btn id="run-next"
+                backgroundType="beige"
+                style="margin: auto;"
+                (click)="cancelDisabled ? nothing() : onRunNext()">🚶‍♀️ Cherry-pick one commit</app-btn>
+            <app-btn id="run-rest"
+                backgroundType="blue"
+                style="margin: auto;"
+                (click)="submitDisabled ? nothing() : onRunRest()"
+                focus>🏃‍♀️ Cherry-pick remaining commits</app-btn>
+        </div>
+
+    </div>
+</app-electronable-modal-base>

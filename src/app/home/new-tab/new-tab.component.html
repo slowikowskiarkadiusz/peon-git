@@ -1,0 +1,41 @@
+<div class="w-100 h-100 p-3">
+    <div class="settings-table">
+        <div>
+            Paste the path to your repository
+        </div>
+        <div>
+            <input type="text"
+                (change)="onDirectoryChosen($event)"
+                (keyup)="onDirectoryChosen($event)"
+                (keyup.enter)="onSubmit()"
+                size="75" />
+        </div>
+        <div>
+            <app-btn bclass="m-1"
+                bstyle="font-size: 12px;"
+                backgroundType="blue"
+                jiggle="3"
+                (click)="tabData?.location ? onSubmit() : nothing()"
+                [disabled]="!tabData?.location">
+                Submit
+            </app-btn>
+            <!-- <input type="submit"
+                (click)="onSubmit()"
+                [disabled]="!tabData?.location"> -->
+        </div>
+        <div></div>
+        <div class="text-danger">
+            <p style="white-space: pre-wrap;">{{message}}</p>
+        </div>
+        <div></div>
+        <div style="user-select: text;">
+            /Users/arkadiuszslowikowski/Desktop/hubka
+        </div>
+        <div style="user-select: text;">
+            /Users/arkadiuszslowikowski/Desktop/modelina
+        </div>
+    </div>
+
+    <!-- <button><label for="chooseGitFolder">Choose your Git directory</label></button> -->
+    <!-- <input id="chooseGitFolder" type="file" webkitdirectory directory hidden (change)="onDirectoryChosen($event)" /> -->
+</div>

@@ -1,0 +1,33 @@
+<app-electronable-modal-base *ngIf="data"
+    [btnsToRender]="['cancel', 'submit']"
+    (cancel)="onCancel()"
+    (submit)="onSubmit()"
+    autofocus>
+    <div class="d-flex">
+        <div class="settings-table">
+            
+            <div>
+                <label for="branch-radio">Branch:</label>
+                <select (change)="onTargetChanged($event)"
+                    class="ms-2">
+                    <option *ngFor="let branch of data.branches"
+                        [value]="branch"
+                        [selected]="data.predefBranch.name == branch.name">
+                        {{branch.name}}
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <input type="checkbox"
+                    id="force-checkbox"
+                    (change)="onForceCheckboxClicked($event)"
+                    [checked]="force"
+                    [disabled]="target.isRemote">
+                <label for="force-checkbox"
+                    class="ms-2">Force</label>
+            </div>
+
+        </div>
+    </div>
+</app-electronable-modal-base>
