@@ -6,11 +6,16 @@ Performance on Windows apparantelly sucks - I blame it on Electron. I might want
 
 It's still one big WIP, but you can actually perform a lot of basic tasks right now.
 
-First you need to add a new tab by clicking the '➕📢' button
+
+First you need to add a new tab by clicking the '➕📢' button<br />
 ![Main view](readmepics/0.png?raw=true "Main view")
 
-Paste the list to your local repo and click 'Submit' button
+
+Paste the list to your local repo and click 'Submit' button<br />
 ![Adding a repo](readmepics/1.png?raw=true "Adding a repo")
 
-All actions are performed from the context menu, so have at it
+
+All actions are performed from the context menu, so have at it<br />
 ![Context menu](readmepics/2.png?raw=true "Context menu")
+
+I've made my own algorithm for drawing the git graph (structure is made in `git-graph.generator.ts` and it drawn it `git-graph.painter.ts`. I can't say I'm fully satisfied with it, but it'll do just for now.
