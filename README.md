@@ -6,3 +6,11 @@ Performance on Windows apparantelly sucks - I blame it on Electron. I might want
 
 It's still one big WIP, but you can actually perform a lot of basic tasks right now.
 
+First you need to add a new tab by clicking the '➕📢' button
+![Main view](readmepics/0.png?raw=true "Main view")
+
+Paste the list to your local repo and click 'Submit' button
+![Adding a repo](readmepics/1.png?raw=true "Adding a repo")
+
+All actions are performed from the context menu, so have at it
+![Context menu](readmepics/2.png?raw=true "Context menu")
