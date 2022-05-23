@@ -19,3 +19,7 @@ All actions are performed from the context menu, so have at it<br />
 ![Context menu](readmepics/2.png?raw=true "Context menu")
 
 I've made my own algorithm for drawing the git graph (structure is made in `git-graph.generator.ts` and it drawn it `git-graph.painter.ts`. I can't say I'm fully satisfied with it, but it'll do just for now.
+
+
+
+It might seem that I'm not making any progress on this one, but in fact I'm secretely rewriting this thing into a JavaFX application. I will upload it at some point here
